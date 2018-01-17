@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-kube
+  labels:
+    appType: tradeshift-component
+  annotations:
+    team: dev-prod
+    kubernetes.io/ingress.class: "nginx"
+    # This is need to proxy the callers hostname to the load balancer
+    use-proxy-protocol: "true"
+    # The current office IP's and known Github CIDRs
+    ingress.kubernetes.io/whitelist-source-range: {{ .Values.whitelistsourcerange }}
+spec:
+  tls:
+    - hosts:
+      # name of the host we want to expose, this will create an entry in Route53
+      - hello-kube.eu-west-1.test.ts.sv
+      # Name of the secret that contains the certificates for TLS, see below
+      secretName: {{ .Release.Name }}-tls-secret
+  rules:
+    # A rule for out host, Nginx will receive a request with the following hostname and route that to the service below
+    - host: hello-kube.eu-west-1.test.ts.sv
+      http:
+        paths:
+          - backend:
+              # Name of the service resource in Kubernetes we need to route the traffic too
+              serviceName: hello-kube
+              # The port of the service we want to access
+              servicePort: 8080

@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: hello-kube
+  labels:
+    appType: tradeshift-component
+  annotations:
+    team: dev-prod
+    repository: https://github.com/GaoLiping/hello-kube.git
+spec:
+  replicas: {{ .Values.replicaCount }} # tells deployment to run 1 pods matching the template
+  strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 0
+  template: # create pods using pod definition in this template
+    metadata:
+      # Assign some metadata to the pod, so we can find it later
+      labels:
+        app: hello-kube
+    spec:
+      # define the containers we wanna run in the pod, please note we can have multiple
+      containers:
+      - name: hello-kube
+        image: sorenmat/hello:1
+        ports:
+          # expose port 8080 from this app
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 2
+        resources:
+          limits:
+            cpu: 0.2
+            memory: 100Mi
+          requests:
+            cpu: 0.2
+            memory: 100Mi
