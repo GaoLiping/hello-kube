@@ -19,7 +19,7 @@ spec:
       # Name of the secret that contains the certificates for TLS, see below
       secretName: {{ .Release.Name }}-tls-secret
   rules:
-    # A rule for out host, Nginx will receive a request with the following hostname and route that to the service below
+    # A rule for our host, Nginx will receive a request with the following hostname and route that to the service below
     - host: hello-kube.eu-west-1.test.ts.sv
       http:
         paths:
