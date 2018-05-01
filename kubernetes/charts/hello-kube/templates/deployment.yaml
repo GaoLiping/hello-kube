@@ -23,6 +23,11 @@ spec:
       containers:
       - name: hello-kube
         image: sorenmat/hello:1
+        env:
+        - name: DEMO_FAREWELL
+          value: "Such a sweet smile"
+        - name: DEMO_TESTING
+          value: "A demo testing"
         ports:
           # expose port 8080 from this app
         - containerPort: 8080

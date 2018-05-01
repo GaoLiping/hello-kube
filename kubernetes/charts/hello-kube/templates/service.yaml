@@ -7,8 +7,7 @@ metadata:
     appType: tradeshift-component
   annotations:
     team: dev-prod
-    consul.enabled: "true"
-    consul.sync: tradeshift-db-slave
+    consul.sync: tradeshift-db
 spec:
   # This selector will include all pods that matches the criteria below.
   # the will search for all pods with metadata containing 'app: hello'
