@@ -8,7 +8,7 @@ metadata:
     team: dev-prod
     repository: https://github.com/GaoLiping/hello-kube.git
 spec:
-  replicas: {{ .Values.replicaCount }} # tells deployment to run 1 pods matching the template
+  replicas: 3 # tells deployment to run 1 pods matching the template
   strategy:
     rollingUpdate:
       maxSurge: 10%
