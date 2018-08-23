@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: hello-kube
   labels:
-    appType: tradeshift-component
+    appType: system-component
   annotations:
     team: dev-prod
     repository: https://github.com/GaoLiping/hello-kube.git
