@@ -29,7 +29,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /
-            port: 8082
+            port: 8080
           initialDelaySeconds: 2
         resources:
           limits:
