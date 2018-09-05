@@ -22,7 +22,7 @@ spec:
       # define the containers we wanna run in the pod, please note we can have multiple
       containers:
       - name: hello-kube
-        image: sorenmat/hello:10
+        image: sorenmat/hello:1
         ports:
           # expose port 8080 from this app
         - containerPort: 8080
